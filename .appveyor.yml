@@ -1,0 +1,21 @@
+environment:
+  matrix:
+    - nodejs_version: "4"
+    - nodejs_version: "6"
+
+platform:
+  - x64
+  - Win32
+
+install:
+  - ps: >-
+        if($env:platform -eq "Win32") {
+          Install-Product node $env:nodejs_version
+        }
+        else {
+          Install-Product node $env:nodejs_version $env:platform
+        }
+  - npm install zmq-prebuilt
+
+test_script:
+  - node node_modules/zmq-prebuilt/windows/smoketes.js
