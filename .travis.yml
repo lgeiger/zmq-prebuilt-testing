@@ -6,4 +6,4 @@ os:
   - linux
   - osx
 install: npm install zmq-prebuilt
-script: node node_modules/zmq-prebuilt/windows/smoketes.js
+script: node node_modules/zmq-prebuilt/windows/smoketest.js

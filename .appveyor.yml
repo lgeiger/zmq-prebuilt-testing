@@ -18,4 +18,6 @@ install:
   - npm install zmq-prebuilt
 
 test_script:
-  - node node_modules/zmq-prebuilt/windows/smoketes.js
+  - node node_modules/zmq-prebuilt/windows/smoketest.js
+
+build: off
