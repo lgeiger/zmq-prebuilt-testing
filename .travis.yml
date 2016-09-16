@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - "4"
+  - "6"
+os:
+  - linux
+  - osx
+install: npm install zmq-prebuilt
+script: node node_modules/zmq-prebuilt/windows/smoketes.js
