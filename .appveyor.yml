@@ -12,6 +12,6 @@ install:
   - npm install zmq-prebuilt
 
 test_script:
-  - node node_modules/zmq-prebuilt/example/smoketest.js
+  - node node_modules/zmq-prebuilt/examples/smoketest.js
 
 build: off
