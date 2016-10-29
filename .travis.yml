@@ -10,4 +10,4 @@ os:
   - linux
   - osx
 install: npm install zeromq
-script: node node_modules/zmq-prebuilt/examples/smoketest.js
+script: node node_modules/zeromq/examples/smoketest.js

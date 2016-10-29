@@ -16,6 +16,6 @@ install:
   - npm install zeromq
 
 test_script:
-  - node node_modules/zmq-prebuilt/examples/smoketest.js
+  - node node_modules/zeromq/examples/smoketest.js
 
 build: off
