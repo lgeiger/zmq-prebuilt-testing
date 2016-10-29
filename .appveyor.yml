@@ -1,7 +1,11 @@
 environment:
   matrix:
+    - nodejs_version: "0.10"
+    - nodejs_version: "0.12"
     - nodejs_version: "4"
+    - nodejs_version: "5"
     - nodejs_version: "6"
+    - nodejs_version: "7"
 
 platform:
   - x64
@@ -9,7 +13,7 @@ platform:
 
 install:
   - ps: Install-Product node $env:nodejs_version $env:platform
-  - npm install zmq-prebuilt
+  - npm install zeromq
 
 test_script:
   - node node_modules/zmq-prebuilt/examples/smoketest.js
