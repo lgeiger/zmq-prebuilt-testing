@@ -13,7 +13,7 @@ platform:
 
 install:
   - ps: Install-Product node $env:nodejs_version $env:platform
-  - npm install zeromq
+  - npm install zeromq --verbose
 
 test_script:
   - node node_modules/zeromq/examples/smoketest.js
