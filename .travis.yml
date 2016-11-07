@@ -9,5 +9,5 @@ node_js:
 os:
   - linux
   - osx
-install: npm install zeromq --verbose
+install: npm install zeromq
 script: node node_modules/zeromq/examples/smoketest.js
