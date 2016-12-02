@@ -23,7 +23,7 @@ matrix:
     env: ELECTRON="0.30.0"
 
 install:
-  - '[ -z "$ELECTRON" ] || npm install electron@${ELECTRON}'
+  - '[ -z "$ELECTRON" ] || npm install electron-prebuilt@${ELECTRON}'
   - 'if [[ -z "$ELECTRON" ]]; then npm install native-module-test; else npm install native-module-test --runtime=electron --target=${ELECTRON} --disturl=https://atom.io/download/electron; fi'
 
-script: if [[ -z "$ELECTRON" ]]; then node node_modules/native-module-test/examples/smoketest.js; else ELECTRON_RUN_AS_NODE=1 node_modules/electron-prebuilt/cli.js node_modules/native-module-test/examples/smoketest.js
+script: if [[ -z "$ELECTRON" ]]; then node node_modules/native-module-test/examples/smoketest.js; else ELECTRON_RUN_AS_NODE=1 node_modules/electron-prebuilt/cli.js node_modules/native-module-test/examples/smoketest.js; fi
