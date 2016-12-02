@@ -1,13 +1,29 @@
 language: node_js
-node_js:
-  - "0.10"
-  - "0.12"
-  - "4"
-  - "5"
-  - "6"
-  - "7"
-os:
-  - linux
-  - osx
-install: npm install zeromq
-script: node node_modules/zeromq/examples/smoketest.js
+matrix:
+  include:
+  - node_js: "0.10"
+  - node_js: "0.12"
+  - node_js: "4"
+  - node_js: "5"
+  - node_js: "6"
+  - node_js: "7"
+  - node_js: "6"
+    env: ELECTRON="1.4.10"
+  - node_js: "6"
+    env: ELECTRON="1.3.0"
+  - node_js: "6"
+    env: ELECTRON="1.2.0"
+  - node_js: "6"
+    env: ELECTRON="1.0.0"
+  - node_js: "6"
+    env: ELECTRON="0.35.0"
+  - node_js: "6"
+    env: ELECTRON="0.32.0"
+  - node_js: "6"
+    env: ELECTRON="0.30.0"
+
+install:
+  - '[ -z "$ELECTRON" ] || npm install electron@${ELECTRON}'
+  - 'if [[ -z "$ELECTRON" ]]; then npm install native-module-test; else npm install native-module-test --runtime=electron --target=${ELECTRON} --disturl=https://atom.io/download/electron; fi'
+
+script: if [[ -z "$ELECTRON" ]]; then node node_modules/native-module-test/examples/smoketest.js; else ELECTRON_RUN_AS_NODE=1 node_modules/electron-prebuilt/cli.js node_modules/native-module-test/examples/smoketest.js

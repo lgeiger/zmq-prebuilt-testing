@@ -6,6 +6,20 @@ environment:
     - nodejs_version: "5"
     - nodejs_version: "6"
     - nodejs_version: "7"
+    - nodejs_version: "7"
+      electron: "1.4.10"
+    - nodejs_version: "7"
+      electron: "1.3.0"
+    - nodejs_version: "7"
+      electron: "1.2.0"
+    - nodejs_version: "7"
+      electron: "1.0.0"
+    - nodejs_version: "7"
+      electron: "0.35.4"
+    - nodejs_version: "7"
+      electron: "0.32.0"
+    - nodejs_version: "7"
+      electron: "0.30.0"
 
 platform:
   - x64
@@ -13,9 +27,11 @@ platform:
 
 install:
   - ps: Install-Product node $env:nodejs_version $env:platform
-  - npm install zeromq
+  - IF DEFINED ELECTRON (npm install electron-prebuilt@%ELECTRON%)
+  - IF DEFINED ELECTRON (npm install native-module-test --runtime=electron --target=%ELECTRON% --disturl=https://atom.io/download/electron) ELSE (npm install native-module-test)
 
 test_script:
-  - node node_modules/zeromq/examples/smoketest.js
+  - IF DEFINED ELECTRON (set ELECTRON_RUN_AS_NODE=1)
+  - IF DEFINED ELECTRON (node_modules\.bin\electron node_modules\native-module-test\examples\smoketest.js) ELSE (node node_modules\native-module-test\examples\smoketest.js)
 
 build: off
