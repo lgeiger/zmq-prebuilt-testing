@@ -18,11 +18,11 @@ matrix:
 
 env:
   global:
-    smoketest: node_modules/zeromq/examples/smoketest.js
+    SMOKE_TEST: node_modules/zeromq/examples/smoketest.js
 
 install:
   - '[ -z "$ELECTRON" ] || npm install electron-prebuilt@${ELECTRON}'
   - 'if [[ -z "$ELECTRON" ]]; then npm install zeromq; else npm install zeromq --runtime=electron --target=${ELECTRON}; fi'
 
 script:
-  - 'if [[ -z "$ELECTRON" ]]; then node $SMOKETEST; else node_modules/electron-prebuilt/cli.js $SMOKETEST; fi'
+  - 'if [[ -z "$ELECTRON" ]]; then node $SMOKE_TEST; else node_modules/electron-prebuilt/cli.js $SMOKE_TEST; fi'
